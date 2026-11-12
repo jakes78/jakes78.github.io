@@ -1,7 +1,533 @@
-<!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>Practice and feedback | Teacher resources</title><style>
+:root{color-scheme:light;--ink:#242424;--muted:#606060;--line:#dedede;--link:#205888;--surface:#f8f8f8}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{margin:0;color:var(--ink);background:#fff;font:16px/1.58 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--link);text-underline-offset:2px}
+a:hover{text-decoration-thickness:2px}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--link);outline-offset:3px}
+.wrap{width:min(100% - 44px,820px);margin:auto}
+.skip{position:absolute;left:-10000px;top:8px;background:#fff;padding:10px;z-index:50}
+.skip:focus{left:10px}
+.site-header{border-bottom:1px solid var(--line)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:74px;padding:14px 0}
+.site-name{font-size:16px;font-weight:700;color:var(--ink);text-decoration:none;white-space:nowrap}
+.site-nav{display:flex;align-items:center;gap:21px;flex-wrap:wrap}
+.site-nav a{font-size:14px;color:#414141;text-decoration:none;white-space:nowrap}
+.site-nav a:hover,.site-nav a[aria-current="page"]{color:var(--ink);text-decoration:underline;text-underline-offset:7px}
+main{padding:40px 0 70px;min-height:calc(100vh - 155px)}
+.page[hidden]{display:none}
+h1{font-size:30px;font-weight:680;line-height:1.25;letter-spacing:-.5px;margin:0 0 18px}
+h2{font-size:21px;line-height:1.35;font-weight:650;letter-spacing:-.18px;margin:34px 0 13px}
+h3{font-size:17px;line-height:1.4;font-weight:650;margin:27px 0 9px}
+p{margin:0 0 15px}
+.lead{font-size:17px;line-height:1.6;max-width:700px;margin:0 0 25px}
+.muted,.fine{color:var(--muted)}
+.fine{font-size:13px;line-height:1.5}
+.breadcrumb{font-size:14px;margin:0 0 18px}
+.resource-list{border-top:1px solid var(--line);margin:14px 0 30px}
+.resource-entry{padding:18px 0;border-bottom:1px solid var(--line)}
+.resource-entry a{font-weight:650;font-size:17px}
+.resource-entry p{color:var(--muted);font-size:15px;margin:4px 0 0}
+.section-line{border:0;border-top:1px solid var(--line);margin:33px 0 27px}
+ul,ol{padding-left:23px;margin:8px 0 19px}li{margin-bottom:9px}
+li:last-child{margin-bottom:0}
+.prompt{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0 14px;margin:14px 0 25px}
+.prompt-top{display:flex;justify-content:space-between;align-items:center;gap:14px}
+.prompt-top strong{font-size:16px;font-weight:650}
+.copy-button{background:#265d90;color:#fff;border:1px solid #265d90;border-radius:3px;font-weight:600;font-size:14px;padding:7px 12px;white-space:nowrap}
+.copy-button:hover{background:#1b476f}
+.prompt-about{color:var(--muted);font-size:14px;margin:9px 0 0}
+.prompt-preview{margin:12px 0 4px;color:#4a4a4a;font-size:14px;line-height:1.6;border-left:2px solid var(--line);padding-left:12px;overflow-wrap:anywhere}
+.prompt-detail{margin-top:10px}
+summary{cursor:pointer;color:var(--link);font-size:14px;font-weight:560}
+.prompt-detail textarea{display:block;resize:vertical;width:100%;min-height:310px;max-height:640px;margin:13px 0 6px;padding:14px;border:1px solid #bdbdbd;background:#fff;color:var(--ink);font-size:14.5px;line-height:1.55;border-radius:2px}
+.prompt-detail .fine{margin:7px 0 0}
+.prompt-tail{font-size:14px;color:var(--muted);margin:12px 0 0}
+.text-action{display:inline;background:none;border:0;padding:0;color:var(--link);text-decoration:underline;text-underline-offset:2px;font-size:inherit;line-height:inherit;cursor:pointer}
+.text-action:hover{text-decoration-thickness:2px}
+.manual-copy-dialog{width:min(720px,calc(100% - 30px));padding:20px;border:1px solid #aaa;background:#fff;color:var(--ink)}
+.manual-copy-dialog::backdrop{background:rgba(0,0,0,.26)}
+.manual-copy-dialog p{font-weight:650;margin-bottom:10px}
+.manual-copy-dialog textarea{width:100%;min-height:185px;max-height:65vh;resize:vertical;border:1px solid #bdbdbd;padding:12px;font:14px/1.5 ui-monospace,Consolas,monospace}
+.optional{border-bottom:1px solid var(--line);margin:20px 0;padding-bottom:13px}
+.optional>summary{font-size:16px;color:var(--ink);font-weight:600}
+.optional-body{padding:14px 0 3px}
+.note{border-left:3px solid #aaa;padding:0 0 0 14px;margin:21px 0;color:#444}
+.note p:last-child{margin-bottom:0}
+.simple-table{border-collapse:collapse;width:100%;margin:13px 0 20px;font-size:14.5px}
+.simple-table th,.simple-table td{border-bottom:1px solid var(--line);padding:11px 12px 11px 0;text-align:left;vertical-align:top}
+.simple-table th{font-weight:650}
+#starter-form{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:14px;margin:18px 0}
+.field.full{grid-column:1/-1}
+.field label{display:block;font-weight:600;font-size:14px;margin:0 0 5px}
+.field input,.field select,.field textarea{width:100%;border:1px solid #bdbdbd;border-radius:2px;padding:8px 10px;background:#fff;font-size:15px}
+.field textarea{min-height:74px;resize:vertical}
+#starter-output[hidden]{display:none}
+#starter-output{margin-top:18px}
+#starter-output textarea{width:100%;min-height:235px;padding:12px;font-size:14.5px;border:1px solid #bdbdbd;line-height:1.55}
+.builder-btn{padding:9px 13px;border:1px solid #555;background:white;color:var(--ink);border-radius:2px;font-weight:600;font-size:14px}
+.builder-btn:hover{background:#f3f3f3}
+.reading-list{list-style:none;margin:14px 0 23px;padding:0;border-top:1px solid var(--line)}
+.reading-list li{padding:13px 0;border-bottom:1px solid var(--line)}
+.reading-list a{font-weight:650}
+.reading-list span{display:block;margin-top:3px;color:var(--muted);font-size:14px}
+.principle{border-bottom:1px solid var(--line);padding:13px 0}
+.principle strong{display:block;margin-bottom:3px}
+.principle p{margin:0;font-size:15px}
+.site-footer{border-top:1px solid var(--line);padding:22px 0 29px;color:var(--muted);font-size:13px}
+.toast{position:fixed;right:18px;bottom:18px;background:#222;color:#fff;padding:10px 14px;max-width:330px;font-size:14px;border-radius:3px;opacity:0;pointer-events:none;transition:opacity .14s;z-index:30}
+.toast.visible{opacity:1}
+.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:760px){.wrap{width:min(100% - 34px,820px)}.header-inner{align-items:flex-start;flex-direction:column;gap:10px;min-height:0}.site-nav{column-gap:16px;row-gap:8px}.site-nav a{font-size:13px}main{padding:28px 0 55px}h1{font-size:27px}h2{font-size:20px}.prompt-top{align-items:flex-start}.copy-button{padding:7px 10px}#starter-form{grid-template-columns:1fr}.field.full{grid-column:auto}}
+@media print{.site-header,.site-footer,.copy-button,.toast,.breadcrumb,.prompt-preview{display:none!important}.page[hidden]{display:none!important}.wrap{width:100%}main{padding:0}.prompt-detail{display:block}.prompt-detail summary{display:none}.prompt-detail textarea{height:auto;overflow:visible}.optional{break-inside:avoid}a{color:#000}}
+</style></head><body>
+<a href="#main" class="skip">Skip to content</a>
+<header class="site-header"><div class="wrap header-inner"><a class="site-name" href="#home">Practice and feedback</a>
+<nav class="site-nav" aria-label="Main navigation"><a data-nav="start" href="#start">Getting started</a><a data-nav="create" href="#create">Create a resource</a><a data-nav="review" href="#review">Review and improve</a><a data-nav="reading" href="#reading">Further reading</a></nav></div></header>
+<main id="main" class="wrap">
+
+<section id="home" class="page"><h1>AI resources for classroom practice</h1>
+<p class="lead">Choose something you would like to make for your students. Each guide explains what to provide, offers a prompt you can copy, and suggests what to check before sharing the result.</p>
+<h2>What would you like to create?</h2>
+<div class="resource-list">
+  <div class="resource-entry"><a href="#flashcards">Flashcards and spaced review</a><p>Short retrieval questions that students can revisit across a unit or course.</p></div>
+  <div class="resource-entry"><a href="#canvas">Canvas practice questions</a><p>Multiple-choice questions with plausible distractors, explanations, and optional QTI export.</p></div>
+  <div class="resource-entry"><a href="#response">Extended-response practice and feedback</a><p>Practice tasks, clear rubrics, and ways for students to reconsider their own responses.</p></div>
+</div>
+<h2>Two ways to start</h2>
+<p><strong>Copy an example:</strong> Select a resource above, use the ready-made prompt, and review the draft it produces.</p>
+<p><strong>Design it with AI:</strong> Describe a teaching need and let AI help you decide what to create. <a href="#start">Start that conversation here</a>.</p>
+<p class="fine">The examples are starting points, not universal recipes. You can also <a href="#review">review and improve</a> a draft or explore <a href="#reading">further reading</a>.</p>
+</section>
+<section id="create" class="page" hidden><h1>Create a resource</h1>
+<p class="lead">Start with one of the three practical options below. You can use one AI for the entire process, or compare independent drafts later if you want a more involved workflow.</p>
+<div class="resource-list">
+  <div class="resource-entry"><a href="#flashcards">Flashcards and spaced review</a><p>Create a small set of retrieval cards and export approved questions.</p></div>
+  <div class="resource-entry"><a href="#canvas">Canvas practice questions</a><p>Draft and review MCQs, then import to Canvas when ready.</p></div>
+  <div class="resource-entry"><a href="#response">Extended-response practice and feedback</a><p>Develop a task, rubric, and optional formative feedback process.</p></div>
+</div><p>If writing a prompt feels unfamiliar, use <a href="#start">Getting started</a> first.</p>
+</section>
+<section id="start" class="page" hidden>
+<h1>Getting started</h1>
+<p class="lead">Begin with a teaching need and the materials you already have. You do not need to know how to write an elaborate AI prompt.</p>
+<h2>A simple first attempt</h2>
+<ol><li>Choose what students should be able to remember, explain, or do.</li><li>Give AI the relevant learning goal and examples of what was actually taught.</li><li>Start with a small draft that you can check carefully, rather than an entire unit.</li><li>Check the answers, revise weak questions, and test the version students will see.</li></ol>
+<h2>Ask AI to design the prompt with you</h2>
+<p>You do not need to know the exact question type, number of items, or format in advance. Describe what students are struggling with and provide some teaching materials. AI can suggest an approach, challenge an assumption, and draft the prompt before creating anything.</p>
+<div class="prompt" data-prompt="start-a">
+      <div class="prompt-top"><strong>Build a prompt from my goal</strong><button type="button" class="copy-button" data-copy="start-a">Copy prompt</button></div>
+      
+      <p class="prompt-preview">I teach [course and age/grade]. My students are learning [specific knowledge or skill]. The difficulty I am trying to address is [what they forget, misunderstand, or cannot…</p>
+      <details class="prompt-detail"><summary>Read or edit the full prompt</summary>
+         <label class="visually-hidden" for="start-a">Full editable text: Build a prompt from my goal</label>
+         <textarea id="start-a" spellcheck="false">I teach [course and age/grade]. My students are learning [specific knowledge or skill]. The difficulty I am trying to address is [what they forget, misunderstand, or cannot yet do].
+
+I would like to create [flashcards / practice MCQs / an extended-response task / another resource], but I am open to a better format. Students should still do this thinking independently: [describe]. They would use the resource [when, where, and how].
+
+I can provide [standards or course expectations, recent lessons, readings, problems, examples, rubrics, known misconceptions, etc.]. Use the attached materials where available; tell me what you cannot inspect. Never invent content or claims about those files.
+
+Work with me to design the resource BEFORE generating it:
+1. Briefly assess whether my proposed format suits the learning goal. If not, recommend a better option and explain why.
+2. Identify up to two decisions that would materially improve the result. Ask me only essential questions; otherwise make clearly stated, reasonable assumptions.
+3. Write a COMPLETE, copy-ready prompt to generate a SMALL first draft. Include source priorities, taught scope, student level, what students must do, expected output, answer and feedback quality, and specific checks for accuracy and usability.
+4. Tell me what to upload or provide alongside that prompt and what I should inspect in the first draft.
+
+Do not generate the resource yet. I want to review the plan and the prompt first.</textarea>
+         <p class="fine">Edits apply to the Copy prompt button. They are not saved; reloading the page restores the original.</p>
+      </details>
+    </div>
+<details class="optional"><summary>I already have a prompt. Can AI improve it?</summary><div class="optional-body"><div class="prompt" data-prompt="start-b">
+      <div class="prompt-top"><strong>Improve an existing prompt</strong><button type="button" class="copy-button" data-copy="start-b">Copy prompt</button></div>
+      
+      <p class="prompt-preview">I want to create [type of classroom practice resource] to help students [specific learning goal]. I teach [course and grade], and I can provide [relevant teaching materials].</p>
+      <details class="prompt-detail"><summary>Read or edit the full prompt</summary>
+         <label class="visually-hidden" for="start-b">Full editable text: Improve an existing prompt</label>
+         <textarea id="start-b" spellcheck="false">I want to create [type of classroom practice resource] to help students [specific learning goal]. I teach [course and grade], and I can provide [relevant teaching materials].
+
+Here is my existing prompt:
+[PASTE PROMPT]
+
+Act as a critical instructional collaborator. First identify the two or three weaknesses most likely to produce a poor resource: for example, unclear learning goal, weak source context, unhelpful questions, answer leakage, unrealistic difficulty, or an output format that will not work.
+
+Then rewrite it as ONE complete prompt I can copy into an AI tool. Preserve the useful requirements, add what is necessary, and remove irrelevant boilerplate. Specify the actual deliverable, who will see answers or feedback, and what the AI must verify or report as uncertain. If an important detail is missing, insert a clear [placeholder] rather than inventing it.
+
+Finally, explain your three most consequential changes in plain language. Do not execute the new prompt yet.</textarea>
+         <p class="fine">Edits apply to the Copy prompt button. They are not saved; reloading the page restores the original.</p>
+      </details>
+    </div></div></details>
+<details class="optional"><summary>Optional: customize your starting request here</summary><div class="optional-body"><p>Fill in whichever fields are useful. The form prepares text you can copy; it does not contact an AI service.</p>
+<div id="starter-form">
+<div class="field"><label for="course">Course and grade</label><input id="course" placeholder="Example: Grade 9 history"></div>
+<div class="field"><label for="rtype">Type of resource</label><select id="rtype"><option>Flashcards or retrieval questions</option><option>Practice multiple-choice questions</option><option>Extended-response practice</option><option>Another classroom resource</option></select></div>
+<div class="field full"><label for="goal">Learning target or misconception</label><input id="goal" placeholder="Example: distinguishing evidence from interpretation"></div>
+<div class="field"><label for="materials">Available materials</label><textarea id="materials" placeholder="Lesson slides, a reading, a rubric, sample questions..."></textarea></div>
+<div class="field"><label for="thinking">Thinking students must do themselves</label><textarea id="thinking" placeholder="Make an inference and justify it..."></textarea></div>
+</div><button type="button" id="build-request" class="builder-btn">Prepare request</button>
+<div id="starter-output" hidden><h3>Your request</h3><textarea id="starter-text" aria-label="Editable starter request"></textarea><p><button type="button" id="copy-starter" class="copy-button">Copy request</button></p></div></div></details>
+<h2>What to provide AI</h2>
+<p>Use whichever materials help define the task. The course overview alone rarely captures everything students have been taught.</p>
+<ul><li><strong>Goals and scope:</strong> AP Course and Exam Description, departmental expectations, unit plans, learning objectives, or skill checklists.</li>
+<li><strong>Learning materials:</strong> Slides, readings, notes, textbook extracts you can share, demonstrations, primary sources, data, diagrams, or transcripts.</li>
+<li><strong>Examples and criteria:</strong> Nonsecure practice questions, worked solutions, exemplars, rubrics, accepted alternatives, and common misconceptions.</li>
+<li><strong>Student context:</strong> Grade, prerequisites, what students should do independently, feedback timing, and the format in which they will use the resource.</li></ul>
+<details class="optional"><summary>Faculty AI policy: What matters for these activities?</summary><div class="optional-body"><p>Concordia encourages faculty to use AI as a thought partner for planning, resource creation, and professional learning. The policy distinguishes that work from the specific requirements for identifiable student information, student-facing AI services, and installing AI software on school devices.</p>
+<p>Use nonidentifying teaching materials for ordinary drafting. For real student work or student-facing AI tools, follow the data safeguards and approval requirements. AI-generated work still requires professional judgment.</p>
+<p class="fine">Source: Concordia International School Shanghai, Staff &amp; Faculty AI Policy, Fall 2026, pp. 1–3. The current approved-applications list is not included here.</p></div></details>
+<p>When you are ready, <a href="#create">choose a resource to create</a>.</p></section>
+<section id="flashcards" class="page" hidden><p class="breadcrumb"><a href="#create">All resource types</a></p><h1>Flashcards and spaced review</h1>
+<p class="lead">Use flashcards when students need to retrieve important knowledge again over time. A useful card can ask for a prediction, explanation, comparison, or correction, not only a definition.</p>
+<h2>Before you begin</h2>
+<ul><li>Provide a learning target, current teaching materials, and any known misconceptions.</li><li>Ask for a manageable set; each card should have one clear retrieval target and a reason to revisit it.</li><li>Require the answer to remain hidden until the student has tried to retrieve or reason.</li></ul>
+<h2>Make the first set</h2>
+<div class="prompt" data-prompt="flash-a">
+      <div class="prompt-top"><strong>Draft 12 retrieval cards</strong><button type="button" class="copy-button" data-copy="flash-a">Copy prompt</button></div>
+      <p class="prompt-about">The first output should be a teacher-review copy, not an automatic publication.</p>
+      <p class="prompt-preview">I teach [course and grade]. I want students to retain and apply [two to four specific learning objectives] across [unit or time period]. They have already studied [brief de…</p>
+      <details class="prompt-detail"><summary>Read or edit the full prompt</summary>
+         <label class="visually-hidden" for="flash-a">Full editable text: Draft 12 retrieval cards</label>
+         <textarea id="flash-a" spellcheck="false">I teach [course and grade]. I want students to retain and apply [two to four specific learning objectives] across [unit or time period]. They have already studied [brief description of taught material]. Common errors include [misconceptions, if known].
+
+Read the attached lesson materials and curriculum expectations. Use taught material to set the scope; standards clarify targets, while old questions and exemplars show difficulty but are not text to copy. Identify any source you cannot inspect. If the evidence is too thin to draft accurate cards, tell me exactly what is missing.
+
+Create 12 ORIGINAL, student-ready retrieval cards as a first candidate set. Choose the balance that best matches the objectives. Include short factual retrieval where essential, but also ask students to predict, explain, distinguish, apply a rule, or diagnose an error where these require meaningful thinking. Avoid 12 definitions or cosmetic variations of the same idea.
+
+For each card:
+- Front: ONE clear, self-contained question. Include any needed data, diagram description, code, context, or assumptions. Do not reveal the answer through hints or wording.
+- Back: the direct correct answer FIRST, then a concise explanation of WHY. Include a valid alternative when meaningful.
+- Teacher reference: ID, learning objective, source location or identifiable lesson reference, and the specific knowledge or misconception checked.
+
+Independently work through each answer, including boundaries or counterexamples where relevant. Flag possible ambiguity, duplicates, unverified facts, and anything beyond what students learned. Do not fabricate page numbers or claim to have run a test you did not perform.
+
+Output (1) the COMPLETE 12-card set in a readable teacher-review format, (2) a short coverage summary showing which objectives are represented and any major gap, and (3) the three cards most in need of teacher scrutiny, if any. These are candidates for review, not approved cards or an import file yet.</textarea>
+         <p class="fine">Edits apply to the Copy prompt button. They are not saved; reloading the page restores the original.</p>
+      </details>
+      <p class="prompt-tail">Not quite right for your class? <button type="button" class="text-action" data-adapt="flash-a">Ask AI to adapt this prompt</button>.</p>
+    </div>
+<h2>After AI responds</h2>
+<ul><li>Check each answer independently and remove ambiguous or duplicate questions.</li><li>Confirm that each front is self-contained and asks students to do the intended thinking.</li><li>Decide when students should revisit the cards; simply producing cards does not make the practice spaced.</li></ul>
+<details class="optional"><summary>Once the cards are approved: export them</summary><div class="optional-body"><div class="prompt" data-prompt="flash-b">
+      <div class="prompt-top"><strong>Export approved cards</strong><button type="button" class="copy-button" data-copy="flash-b">Copy prompt</button></div>
+      <p class="prompt-about">Use this only after checking and approving the content.</p>
+      <p class="prompt-preview">Use ONLY these teacher-approved cards and corrections: [attach or paste final card set, including IDs]. Target import tool: [Quizlet / Anki / Knowt / other].</p>
+      <details class="prompt-detail"><summary>Read or edit the full prompt</summary>
+         <label class="visually-hidden" for="flash-b">Full editable text: Export approved cards</label>
+         <textarea id="flash-b" spellcheck="false">Use ONLY these teacher-approved cards and corrections: [attach or paste final card set, including IDs]. Target import tool: [Quizlet / Anki / Knowt / other].
+
+Keep every approved question and answer faithful to the reviewed text. Make only formatting changes needed by the chosen importer and report any unavoidable loss of images, formatting, or multiline examples.
+
+Produce a real downloadable tab-separated UTF-8 file if possible, with exactly two fields per card: Question and Answer. Each card must occupy one line; remove or safely replace internal tabs/newlines without changing meaning. Do not add, remove, renumber, or rewrite cards. If the tool instead needs a different format, explain it before converting.
+
+Also show the number of exported cards, and check that every row has exactly two nonempty fields. If file creation is unavailable, provide the complete two-column TSV text for manual saving, without inventing a download link.
+
+The import transfers card content, not a spaced schedule. Tell me one practical way to revisit the cards over later lessons.</textarea>
+         <p class="fine">Edits apply to the Copy prompt button. They are not saved; reloading the page restores the original.</p>
+      </details>
+    </div></div></details>
+<details class="optional"><summary>Flashcard tools you could use</summary><div class="optional-body"><ul><li><a href="https://help.quizlet.com/hc/en-us/articles/360029977151-Creating-sets-by-importing-content" target="_blank" rel="noopener noreferrer">Quizlet</a> can import tab-separated term and definition pairs.</li><li><a href="https://docs.ankiweb.net/importing/text-files.html" target="_blank" rel="noopener noreferrer">Anki</a> can import tab-separated text and offers detailed scheduling controls.</li><li><a href="https://knowt.com/" target="_blank" rel="noopener noreferrer">Knowt</a> offers another flashcard and study platform. Check the review mode and plan available to you.</li></ul><p class="fine">These tools do not all schedule spaced review in the same way. External links need an internet connection.</p></div></details>
+<p><a href="#review">Next: review and improve your draft</a></p>
+</section>
+<section id="canvas" class="page" hidden><p class="breadcrumb"><a href="#create">All resource types</a></p><h1>Canvas practice questions</h1>
+<p class="lead">Draft multiple-choice questions that reveal plausible misconceptions and explain the reasoning behind each choice. Review the question quality first; generate a Canvas import package only after the content is approved.</p>
+<h2>Before you begin</h2>
+<ul><li>Provide the learning targets, teaching materials, and examples of the expected difficulty.</li><li>Include mistakes or misconceptions students commonly make.</li><li>Eight questions with four choices is a practical starting size; adjust it to the learning target.</li></ul>
+<h2>Draft the questions</h2>
+<div class="prompt" data-prompt="canvas-a">
+      <div class="prompt-top"><strong>Draft eight multiple-choice questions</strong><button type="button" class="copy-button" data-copy="canvas-a">Copy prompt</button></div>
+      <p class="prompt-about">Ask for an answer key and feedback explaining why each tempting wrong answer fails.</p>
+      <p class="prompt-preview">I teach [course and grade]. I need a LOW-STAKES formative practice set on [exact learning objectives]. Students have already covered [specific lessons/content]. I want ques…</p>
+      <details class="prompt-detail"><summary>Read or edit the full prompt</summary>
+         <label class="visually-hidden" for="canvas-a">Full editable text: Draft eight multiple-choice questions</label>
+         <textarea id="canvas-a" spellcheck="false">I teach [course and grade]. I need a LOW-STAKES formative practice set on [exact learning objectives]. Students have already covered [specific lessons/content]. I want questions that reveal misconceptions and explanations students can use to correct their thinking.
+
+Use the attached curriculum expectations, current teaching materials, and examples of our question difficulty. Give taught material priority for scope. Examples are references for quality, not questions to reproduce. Common mistakes to target: [list if known]. State what you could not read; do not invent missing sources or teach beyond the provided scope.
+
+Draft 8 ORIGINAL multiple-choice questions with four choices each and exactly ONE defensible correct answer. Include a meaningful mix of knowledge, application, interpretation, and error analysis appropriate to the objectives. Avoid trivial wording traps, implausible wrong answers, or several questions testing the same tiny fact.
+
+For EACH question return:
+1. ID and objective; complete student-facing stem, with all necessary information.
+2. Choices A–D, in student-facing language. Wrong choices should reflect plausible mistakes, not obvious nonsense.
+3. Teacher-only correct answer and independently reasoned explanation.
+4. Brief, specific feedback for EACH choice, explaining the misconception or reasoning. For the correct choice, reinforce WHY it works; for wrong choices, help students reconsider without merely saying 'incorrect'.
+5. Identifiable source or lesson reference and one likely ambiguity or edge case checked.
+
+Present the student-facing items separately from the answer key and choice-level feedback, so I can review and safely reuse them. Finish with an objective coverage check and flag any uncertain answers, multiple defensible responses, untested calculations, or weak distractors. Produce all eight questions now. Do NOT create a QTI ZIP or claim Canvas compatibility yet.
+
+Delivery note: These feedback explanations are suitable for one-question-at-a-time practice in tools that support it. Canvas New Quizzes generally shows item feedback in quiz results after submission, not between questions. The question content alone cannot change that behavior.</textarea>
+         <p class="fine">Edits apply to the Copy prompt button. They are not saved; reloading the page restores the original.</p>
+      </details>
+      <p class="prompt-tail">Not quite right for your class? <button type="button" class="text-action" data-adapt="canvas-a">Ask AI to adapt this prompt</button>.</p>
+    </div>
+<h2>After AI responds</h2>
+<ul><li>Solve each question yourself. Check that exactly one choice is defensibly correct.</li><li>Review the distractors, explanations, scope, and any code or calculations.</li><li>Keep teacher-only answers away from students until the planned feedback point.</li></ul>
+<details class="optional"><summary>When the questions are approved: make a QTI ZIP</summary><div class="optional-body"><div class="prompt" data-prompt="canvas-b">
+      <div class="prompt-top"><strong>Package approved MCQs for Canvas</strong><button type="button" class="copy-button" data-copy="canvas-b">Copy prompt</button></div>
+      <p class="prompt-about">Import only into an unpublished quiz, then check the result in Canvas.</p>
+      <p class="prompt-preview">I have approved these final formative MCQs: [attach the FINAL reviewed question set and answer/feedback key]. Package ONLY those approved IDs and exact texts for Canvas New…</p>
+      <details class="prompt-detail"><summary>Read or edit the full prompt</summary>
+         <label class="visually-hidden" for="canvas-b">Full editable text: Package approved MCQs for Canvas</label>
+         <textarea id="canvas-b" spellcheck="false">I have approved these final formative MCQs: [attach the FINAL reviewed question set and answer/feedback key]. Package ONLY those approved IDs and exact texts for Canvas New Quizzes. Do not edit questions, change correct responses, or add new questions.
+
+Create a REAL downloadable QTI 1.2 ZIP containing a valid imsmanifest.xml and the required assessment/item XML for standard single-answer multiple-choice questions. Use one point per item unless the approved set specifies otherwise. Preserve readable code, basic mathematics, and the approved choice text.
+
+First verify locally: the archive opens; all manifest targets resolve; XML is well formed; question count and total points match; every option and correct-answer ID maps to the approved set. Include a readable ID-to-key audit table and list any lost formatting or unsupported feature. Include choice-specific feedback only if the package format supports it; never claim that Canvas will import or display it correctly without a real test.
+
+Return the actual QTI ZIP and the local validation report. If you cannot generate an actual file, say so and provide a clean manual-entry version instead. Never invent a download link or describe an import as successful when it has not occurred.
+
+After I import into an UNPUBLISHED New Quiz, give me a short checklist to verify item count, answer mapping, points, feedback visibility, images, and formatting in Canvas Preview. Note that Canvas New Quizzes feedback timing differs from immediate, between-question practice.</textarea>
+         <p class="fine">Edits apply to the Copy prompt button. They are not saved; reloading the page restores the original.</p>
+      </details>
+    </div><p>Import the ZIP into an unpublished New Quiz using <strong>Build → Options → Import Content</strong>. Confirm the question count, scoring, answer keys, and formatting in Preview. If AI cannot create an actual file, use the teacher-review copy for manual entry.</p><p><a href="https://community.instructure.com/en/kb/articles/661050-unknown" target="_blank" rel="noopener noreferrer">Canvas QTI import instructions</a> (external).</p></div></details>
+<p class="note">Canvas New Quizzes can provide answer-specific feedback when students review quiz results after submission. It does not reproduce the immediate, between-question feedback that motivated the custom review app.</p>
+<p><a href="#review">Next: review and improve your draft</a></p></section>
+<section id="response" class="page" hidden><p class="breadcrumb"><a href="#create">All resource types</a></p><h1>Extended-response practice and feedback</h1>
+<p class="lead">Create tasks that require students to explain, solve, or justify. Support more attempts with a clear rubric and a way to reconsider the work, without automatically supplying a finished answer.</p>
+<h2>Before you begin</h2>
+<ul><li>Provide the learning goal, task format, and relevant lesson examples.</li><li>Include a rubric, exemplar, or description of what earns credit when available.</li><li>Decide what students should complete independently before they see feedback.</li></ul>
+<h2>Create a practice task</h2>
+<div class="prompt" data-prompt="response-a">
+      <div class="prompt-top"><strong>Create a task, rubric, and self-check</strong><button type="button" class="copy-button" data-copy="response-a">Copy prompt</button></div>
+      <p class="prompt-about">Useful for paper practice, Canvas, or other familiar classroom tools.</p>
+      <p class="prompt-preview">I teach [course and age/grade]. Students have learned [concepts and prerequisite skills]. I want them to practice [specific reasoning or performance goal] by completing [ty…</p>
+      <details class="prompt-detail"><summary>Read or edit the full prompt</summary>
+         <label class="visually-hidden" for="response-a">Full editable text: Create a task, rubric, and self-check</label>
+         <textarea id="response-a" spellcheck="false">I teach [course and age/grade]. Students have learned [concepts and prerequisite skills]. I want them to practice [specific reasoning or performance goal] by completing [type of extended response] independently. The expected effort is [time, length, or complexity].
+
+Use the attached lesson materials, relevant standards, and any sample questions or rubrics. Match the level and notation students have actually been taught. Do not copy secure assessment items or introduce unexplained new content. State any source access limitations.
+
+Create ONE original, complete formative task. Return four SEPARATE sections:
+A. STUDENT TASK: a self-contained prompt with all necessary data, constraints, and directions. It must require the intended reasoning and allow more than one valid approach when appropriate.
+B. STUDENT SELF-CHECK: a short list of questions students can use AFTER an attempt, focused on the evidence of learning rather than surface features.
+C. TEACHER RUBRIC: 4–6 independently scorable criteria with observable evidence, point values, and examples of acceptable alternative responses. Do not double-penalize one underlying error.
+D. TEACHER-ONLY EXEMPLAR: one defensible sample solution or response, with brief annotations showing how it meets the rubric. Clearly separate it from student materials.
+
+Check that the task is solvable using taught knowledge, the rubric rewards the intended skill, every criterion is supported by the prompt, and no answer is accidentally revealed in the student section. Note assumptions or unresolved validity issues. Produce the complete resource now, but do not write the AI feedback prompt or create an import file yet.
+
+Recommended sequence: student attempts → receives criteria or feedback → identifies a gap → revises. The exemplar should not be released before the first attempt.</textarea>
+         <p class="fine">Edits apply to the Copy prompt button. They are not saved; reloading the page restores the original.</p>
+      </details>
+      <p class="prompt-tail">Not quite right for your class? <button type="button" class="text-action" data-adapt="response-a">Ask AI to adapt this prompt</button>.</p>
+    </div>
+<h2>Choose how students will check their work</h2>
+<p><strong>Rubric self-check:</strong> Students complete a response, compare it with criteria and an example, identify what is missing, and revise.</p>
+<p><strong>AI-supported feedback:</strong> Where permitted, students provide their own prior attempt and the rubric to an approved AI tool and receive response-specific formative critique. They should still evaluate and act on the feedback.</p>
+<details class="optional"><summary>Optional: feedback prompt for an actual student attempt</summary><div class="optional-body"><div class="prompt" data-prompt="response-b">
+      <div class="prompt-top"><strong>Give formative feedback on an attempt</strong><button type="button" class="copy-button" data-copy="response-b">Copy prompt</button></div>
+      <p class="prompt-about">Use the student-facing task and rubric, without handing over a teacher-only canonical solution.</p>
+      <p class="prompt-preview">I have already completed my own attempt at a formative task. I want feedback that helps me revise independently, NOT a replacement answer or an official grade.</p>
+      <details class="prompt-detail"><summary>Read or edit the full prompt</summary>
+         <label class="visually-hidden" for="response-b">Full editable text: Give formative feedback on an attempt</label>
+         <textarea id="response-b" spellcheck="false">I have already completed my own attempt at a formative task. I want feedback that helps me revise independently, NOT a replacement answer or an official grade.
+
+STUDENT-FACING TASK:
+[paste full teacher-approved task]
+
+STUDENT-FACING RUBRIC:
+[paste clear scoring criteria, without a teacher-only exemplar or answer key]
+
+MY OWN ATTEMPT:
+[paste only content allowed in this approved platform; remove identifying details where necessary]
+
+Use only the supplied task, rubric, and my attempt. For each criterion report Met / Not yet / Uncertain, cite a specific phrase, step or line from MY work, and briefly justify the judgment. Accept equivalent correct methods and avoid counting the same error against several criteria. If evidence is missing or interpretation is debatable, explain the uncertainty rather than guessing.
+
+Do not write, finish, or correct the complete response for me. After the criterion check, identify the ONE most important gap and give ONE actionable hint or question that helps me reconsider it without revealing the solution. Then ask me to revise and try again. Keep the tone factual and specific; avoid generic praise.
+
+This feedback is formative. I should discuss disputed or uncertain judgments with my teacher.</textarea>
+         <p class="fine">Edits apply to the Copy prompt button. They are not saved; reloading the page restores the original.</p>
+      </details>
+    </div></div></details>
+<h2>Before using it with students</h2>
+<ul><li>Test the rubric on a correct response, a plausible alternative, and a response with a specific mistake.</li><li>Compare AI feedback with teacher judgments before relying on it.</li><li>For real student work or student-facing AI services, follow the school policy and approval requirements.</li></ul>
+<p><a href="#review">Next: review and improve your draft</a></p></section>
+<section id="review" class="page" hidden><h1>Review and improve</h1>
+<p class="lead">A draft is a starting point, not a finished resource. One AI is enough for a first pass; a second AI can add independent ideas and criticism when the task warrants it.</p>
+<h2>Start with one AI</h2>
+<p>Have the model challenge its own questions or the resource it produced. Then make your own decisions using the original teaching materials and the student experience.</p>
+<div class="prompt" data-prompt="audit-a">
+      <div class="prompt-top"><strong>Check accuracy, ambiguity, and teaching quality</strong><button type="button" class="copy-button" data-copy="audit-a">Copy prompt</button></div>
+      <p class="prompt-about">You can use this after a single-model draft or after combining candidates from several models.</p>
+      <p class="prompt-preview">Act as a critical reviewer of this draft classroom practice resource, not as a copy editor who assumes the answer key is right.</p>
+      <details class="prompt-detail"><summary>Read or edit the full prompt</summary>
+         <label class="visually-hidden" for="audit-a">Full editable text: Check accuracy, ambiguity, and teaching quality</label>
+         <textarea id="audit-a" spellcheck="false">Act as a critical reviewer of this draft classroom practice resource, not as a copy editor who assumes the answer key is right.
+
+I am supplying (1) draft questions and proposed answers or rubric, (2) current teaching materials, (3) learning objectives, and (4) any known misconceptions. If an input is absent or unreadable, name the limitation first.
+
+Independently solve or evaluate each item BEFORE checking its proposed answer. Review:
+- Factual accuracy, valid alternatives, numerical/code boundary cases, and grading consistency;
+- Alignment to the objectives and to what students have actually learned;
+- Whether questions prompt retrieval, application, or reasoning rather than answer recognition alone;
+- Ambiguity, missing conditions, accidental hints, repetition and realistic difficulty;
+- For MCQs, whether each wrong choice is plausible and feedback addresses its misconception;
+- For written responses, whether rubric criteria are observable and avoid double penalties;
+- Accessibility, readable formatting, and accidental exposure of teacher-only answers.
+
+Give a prioritized audit organized by EXACT item ID: Required fix / Potential improvement / Verified as written. For each issue include the evidence and an actionable proposed repair. Separate genuine errors from style preferences. Provide an objective coverage map, a list of sources or checks you could not perform, and your honest verification method. Do not claim to have run code, opened Canvas, or tested an import unless you actually did so.
+
+If only a few items need correction, give corrected versions of THOSE items rather than rewriting the whole resource. Finish with a cautious status: needs correction / ready for my final teacher check. No student release or automated grading is authorized by this review.</textarea>
+         <p class="fine">Edits apply to the Copy prompt button. They are not saved; reloading the page restores the original.</p>
+      </details>
+    </div>
+<h2>Optional: My two-AI workflow</h2>
+<p>For larger resource sets, I often ask two AIs to draft candidates independently before either sees the other set. Then I give both sets to each AI, ask them to compare strengths and weaknesses, and curate a combined version. The resulting resource may go through further independent audits and classroom testing.</p>
+<p>Two models can surface different ideas and errors, but agreement does not establish correctness. This approach also takes considerably more time than a quick one-prompt draft.</p>
+<details class="optional"><summary>Step 1: Generate a second independent candidate set</summary><div class="optional-body"><div class="prompt" data-prompt="compare-draft">
+      <div class="prompt-top"><strong>Draft an independent second set</strong><button type="button" class="copy-button" data-copy="compare-draft">Copy prompt</button></div>
+      <p class="prompt-about">Give the second model the same original sources and goals before sharing the first model’s answers.</p>
+      <p class="prompt-preview">I teach [subject, course, grade]. I need [type of practice resource] for [specific taught learning objectives]. I will give the same source packet and task specification to…</p>
+      <details class="prompt-detail"><summary>Read or edit the full prompt</summary>
+         <label class="visually-hidden" for="compare-draft">Full editable text: Draft an independent second set</label>
+         <textarea id="compare-draft" spellcheck="false">I teach [subject, course, grade]. I need [type of practice resource] for [specific taught learning objectives]. I will give the same source packet and task specification to two AI systems to get INDEPENDENT candidate sets.
+
+Use the attached course expectations, current teaching materials, worked examples, nonsecure practice, and known misconceptions. Treat taught content as the scope. Name any sources you cannot inspect, and do not invent source citations.
+
+Without seeing another model's work, produce [number] ORIGINAL candidate items. For each include the student-facing item, answer or rubric, brief reasoning, objective, and verifiable source/lesson reference. Cover genuinely different learning demands appropriate to the resource; avoid padding with close paraphrases. Independently reason through the answer and flag ambiguity or assumptions.
+
+Return the COMPLETE candidate set now, plus a short objective coverage map and a list of the weakest or most uncertain items. Do not ask to see the other AI's draft. Do not generate import files or claim release readiness.</textarea>
+         <p class="fine">Edits apply to the Copy prompt button. They are not saved; reloading the page restores the original.</p>
+      </details>
+    </div></div></details>
+<details class="optional"><summary>Step 2: Compare both sets and synthesize</summary><div class="optional-body"><div class="prompt" data-prompt="compare-synthesize">
+      <div class="prompt-top"><strong>Compare candidate sets and propose a curated version</strong><button type="button" class="copy-button" data-copy="compare-synthesize">Copy prompt</button></div>
+      <p class="prompt-about">Run this against both models if you want independent comparisons.</p>
+      <p class="prompt-preview">I am providing two independently produced candidate sets, A and B, along with the ORIGINAL teaching sources, learning objectives and the target number/type of items. I want…</p>
+      <details class="prompt-detail"><summary>Read or edit the full prompt</summary>
+         <label class="visually-hidden" for="compare-synthesize">Full editable text: Compare candidate sets and propose a curated version</label>
+         <textarea id="compare-synthesize" spellcheck="false">I am providing two independently produced candidate sets, A and B, along with the ORIGINAL teaching sources, learning objectives and the target number/type of items. I want an evidence-based review and a stronger curated draft, not a popularity contest between models.
+
+1. Independently evaluate accuracy, taught scope, objective coverage, challenge, misconception targeting, feedback quality and reasonable alternative answers. Do NOT assume either proposed key is correct.
+2. Compare by exact candidate IDs and classify each as Keep / Revise / Combine / Reject. Explain consequential judgments briefly; highlight conflicting answers and evidence required to resolve them.
+3. Produce ONE curated candidate set of [target number] complete, student-ready items with a separate teacher answer/feedback key. Prefer strong items from either source; combine only when it improves clarity or target coverage. Document the provenance of each selected item (A, B, both, or new revision).
+4. Provide a coverage map, remaining questions for teacher judgment, and a list of what was not independently verified.
+
+Do not invent test results or citations. If a disputed item cannot be verified, mark it unresolved rather than silently choosing one answer. This is still a candidate set: no QTI export, app update or student publication until teacher review.
+
+I may ask BOTH models to perform this comparison separately, then reconcile their disagreements myself.</textarea>
+         <p class="fine">Edits apply to the Copy prompt button. They are not saved; reloading the page restores the original.</p>
+      </details>
+    </div></div></details>
+<h2>Before publishing or sharing</h2>
+<ul><li>Verify answers against source materials, worked examples, calculations, or code execution where applicable.</li><li>Resolve disagreements with evidence, not by voting between AIs.</li><li>Check the actual student-facing interface or exported file. A plausible output is not a successful import or a reliable rubric.</li></ul>
+<p>For model and subscription differences, see <a href="#reading">Further reading</a>.</p></section>
+<section id="reading" class="page" hidden><h1>Further reading</h1>
+<p class="lead">These optional notes offer context about the apps, AI models, and the research that influenced their design. The practical prompts remain under <a href="#create">Create a resource</a>.</p>
+<details class="optional"><summary>Choosing a model and subscription</summary><div class="optional-body"><p>Different models, products, and paid tiers can produce very different results. Compare them on your actual teaching materials and required output, rather than how polished the writing looks.</p>
+<p>The school provides Flint Pro. The apps described in this session were developed with ChatGPT, Claude, and Kimi, not Flint. These are examples of options, not a formal ranking.</p>
+<table class="simple-table"><thead><tr><th>Consideration</th><th>What to check</th></tr></thead><tbody><tr><td>Accuracy and feedback</td><td>Are the answers right? Are explanations and distractors useful?</td></tr><tr><td>Understanding sources</td><td>Does the model correctly interpret readings, slides, diagrams, rubrics, and examples? What did it miss?</td></tr><tr><td>Export requirements</td><td>Can it actually produce a TSV, QTI ZIP, or document, and explain what remains untested?</td></tr><tr><td>Subscription and access</td><td>Which version, features, uploads, and usage limits are available on the account?</td></tr><tr><td>Use with students</td><td>Is the platform approved for student-facing use and identifiable student data?</td></tr></tbody></table>
+<p>You can begin with one AI. For complex work, a second can help draft alternatives or audit reasoning, but neither removes the need to verify content.</p>
+<p class="fine">Products and plans change. See official information from <a href="https://help.openai.com/en/articles/20001354-gpt-6-and-other-models-in-chatgpt" target="_blank" rel="noopener noreferrer">OpenAI</a> and <a href="https://platform.claude.com/docs/en/models/opus-5-5/overview" target="_blank" rel="noopener noreferrer">Anthropic</a>.</p></div></details><details class="optional"><summary>Why I built these apps</summary><div class="optional-body"><h3>Review and MCQs in one place</h3><p>I wanted spaced review and practice MCQs together, with feedback immediately after each answer. Canvas, AP Classroom, and ordinary forms solved parts of that need, but not the whole workflow I wanted.</p>
+<h3>More frequent FRQ attempts</h3><p>Students can be generous when scoring their own work, and teachers cannot personally mark every practice attempt. The AP CSA FRQ prototype copies a rubric-aware prompt for an external AI conversation. The Foundations review app instead provides a sample solution and rubric for self-checking.</p>
+<p>These tools are teaching designs informed by learning research. They have not independently demonstrated improved learning outcomes.</p></div></details><h2>The science of learning behind the tools</h2>
+<p>These principles can inform the design of flashcards, quizzes, and written-response practice even without building an app. They are intended as a starting point rather than an exhaustive account of learning.</p>
+<div class="principle"><strong>Prior knowledge and working memory</strong><p>Check prerequisites. Use clear instructions and worked examples when an idea is unfamiliar, then gradually remove supports.</p></div><div class="principle"><strong>Retrieval practice</strong><p>Ask students to recall, explain, predict, or solve before revealing an answer. The best format depends on the learning target.</p></div><div class="principle"><strong>Spacing</strong><p>Revisit important ideas across lessons or units. One flashcard session is not automatically spaced practice.</p></div><div class="principle"><strong>Feedback and misconceptions</strong><p>Explain why a response works or why a tempting alternative fails. Give students a chance to act on the explanation.</p></div><div class="principle"><strong>Metacognition and self-assessment</strong><p>Provide meaningful criteria for students to judge their own work, notice gaps, and decide what to revise.</p></div>
+<p class="note"><strong>Preserve meaningful effort, not unnecessary difficulty.</strong> Retrieval and problem solving can be effortful, but confusion is not an instructional goal. Useful support can make the intended thinking more accessible. Immediate feedback can be valuable for specific MCQ misconceptions, but timing depends on the task.</p>
+<h3>Recommended reading</h3><p class="fine">These research links require an internet connection; the rest of the site works offline.</p>
+<ul class="reading-list"><li><a href="https://www.deansforimpact.org/files/assets/thescienceoflearning.pdf" target="_blank" rel="noopener noreferrer">The Science of Learning</a><span>Deans for Impact, 2015 edition · Broad overview A concise explanation of how prior knowledge, limited working memory, worked examples, retrieval and feedback relate to teaching. A useful first read for understanding the bigger picture.</span></li><li><a href="https://www.edresearch.edu.au/guides-resources/practice-guides/spacing-and-retrieval-practice-guide-full-publication" target="_blank" rel="noopener noreferrer">Spacing and retrieval practice guide</a><span>Australian Education Research Organisation · Classroom routines Practical guidance for revisiting material over time, designing low-stakes retrieval opportunities and correcting misunderstandings. Especially relevant to flashcards and practice questions.</span></li><li><a href="https://www.learningscientists.org/downloadable-materials" target="_blank" rel="noopener noreferrer">Six Strategies for Effective Learning</a><span>The Learning Scientists · Ready-to-use teacher and student resources Accessible posters, slides and guides on retrieval, spacing, elaboration, interleaving, concrete examples and dual coding.</span></li><li><a href="https://educationendowmentfoundation.org.uk/education-evidence/guidance-reports/feedback" target="_blank" rel="noopener noreferrer">Teacher Feedback to Improve Pupil Learning</a><span>Education Endowment Foundation, 2021 · Feedback design Focuses on feedback that addresses learning gaps and helps students move forward. Particularly useful for designing MCQ explanations and extended-response feedback.</span></li><li><a href="https://educationendowmentfoundation.org.uk/education-evidence/guidance-reports/metacognition" target="_blank" rel="noopener noreferrer">Metacognition and Self-Regulated Learning</a><span>Education Endowment Foundation, second edition 2025 · Self-monitoring Explores how teachers can help students plan, monitor and evaluate their learning. Useful for response rubrics and student self-checks.</span></li></ul>
+<p>For a deeper evidence review: <a href="https://www.psychologicalscience.org/journals/pspi/1529100612453266/" target="_blank" rel="noopener noreferrer">Dunlosky et al. (2013): Improving Students’ Learning With Effective Learning Techniques</a>.</p>
+<details class="optional"><summary>Apply learning science to a resource you are creating</summary><div class="optional-body"><div class="prompt" data-prompt="learning-science-audit">
+      <div class="prompt-top"><strong>Review my resource using learning science</strong><button type="button" class="copy-button" data-copy="learning-science-audit">Copy prompt</button></div>
+      <p class="prompt-about">This prompt asks for up to three relevant improvements, not a checklist applied indiscriminately.</p>
+      <p class="prompt-preview">Help me improve a draft learning resource using principles from the science of learning, without turning it into an unnecessarily elaborate activity.</p>
+      <details class="prompt-detail"><summary>Read or edit the full prompt</summary>
+         <label class="visually-hidden" for="learning-science-audit">Full editable text: Review my resource using learning science</label>
+         <textarea id="learning-science-audit" spellcheck="false">Help me improve a draft learning resource using principles from the science of learning, without turning it into an unnecessarily elaborate activity.
+
+I teach [subject and age/grade]. My target is [specific knowledge or skill]. I have provided [resource draft, objectives, lessons, answers or rubric]. The thinking students should do independently is [describe].
+
+Consider only principles relevant to this resource:
+- Prior knowledge / working memory: What prerequisites need checking? Would a clear example or temporary scaffold reduce unhelpful load?
+- Retrieval: Must students recall, explain, predict or solve before seeing an answer? Does the question give away what they should retrieve?
+- Spacing: What practical later opportunity would revisit important knowledge? A one-off quiz or flashcard set is not automatically spaced practice.
+- Feedback: Does feedback explain the reasoning or misconception, and can students act on it? The best timing may depend on the task.
+- Metacognition: Can students use clear criteria to identify a gap and make a meaningful revision?
+
+Identify the TWO or THREE most applicable principles. Recommend up to THREE precise changes, each with a brief before/after example if useful. Distinguish established learning principles from YOUR proposed implementation and mention relevant tradeoffs for access, student independence and teacher workload.
+
+Preserve meaningful student thinking while removing avoidable confusion. Do not add difficult steps merely to make the activity feel rigorous, invent citations, or claim demonstrated learning gains. If no change is needed, say so. End with one modest way to check whether the revised activity helps students learn.</textarea>
+         <p class="fine">Edits apply to the Copy prompt button. They are not saved; reloading the page restores the original.</p>
+      </details>
+    </div></div></details>
+</section>
+</main><footer class="site-footer"><div class="wrap">Teacher resource toolkit · Offline HTML · External reading links require internet</div></footer><div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){"use strict";
+  const pages=[...document.querySelectorAll('.page')];
+  const nav=[...document.querySelectorAll('[data-nav]')];
+  const routes=new Set(pages.map(p=>p.id));
+  const createRoutes=new Set(['create','flashcards','canvas','response']);
+  function openPage(){
+    let route=location.hash.slice(1);
+    if(route==='main'){route='home';}
+    if(!routes.has(route)) route='home';
+    for(const p of pages){p.hidden=p.id!==route;}
+    const group=createRoutes.has(route)?'create':route;
+    for(const a of nav){if(a.dataset.nav===group)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');}
+    document.title=(route==='home'?'Practice and feedback':document.getElementById(route).querySelector('h1').textContent+' | Practice and feedback');
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',openPage);openPage();
+  const toast=document.getElementById('toast');let toastId;
+  function notify(s){toast.textContent=s;toast.classList.add('visible');clearTimeout(toastId);toastId=setTimeout(()=>toast.classList.remove('visible'),2500);}
+  async function copyText(s,editBox){
+    if(!s.trim()){notify('There is nothing to copy.');return;}
+    try{
+      if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(s);notify('Copied. Paste into your AI tool.');return;}
+    }catch(e){}
+    let copied=false;
+    const helper=document.createElement('textarea');helper.value=s;helper.setAttribute('readonly','');helper.style.cssText='position:fixed;top:0;left:0;width:2px;height:2px;opacity:0;';document.body.appendChild(helper);
+    try{helper.focus();helper.select();copied=document.execCommand('copy');}catch(e){}
+    helper.remove();
+    if(copied){notify('Copied. Paste into your AI tool.');return;}
+    let dialog=document.getElementById('manual-copy-dialog');
+    if(!dialog){
+      dialog=document.createElement('dialog');dialog.id='manual-copy-dialog';dialog.className='manual-copy-dialog';
+      const heading=document.createElement('p');heading.textContent='Copy this text manually';
+      const area=document.createElement('textarea');area.id='manual-copy-text';area.setAttribute('aria-label','Text to copy manually');area.readOnly=true;
+      const close=document.createElement('button');close.type='button';close.className='builder-btn';close.textContent='Close';
+      close.addEventListener('click',()=>dialog.close());
+      dialog.append(heading,area,close);document.body.appendChild(dialog);
+    }
+    const area=dialog.querySelector('textarea');area.value=s;
+    if(!dialog.open)dialog.showModal();area.focus();area.select();
+    notify('Clipboard access is blocked. Copy the selected text.');
+  }
+  for(const b of document.querySelectorAll('[data-copy]')){
+    b.addEventListener('click',()=>{const el=document.getElementById(b.dataset.copy);if(el)copyText(el.value,el);});
+  }
+  // Use the currently edited example as a starting point, not as a fixed recipe.
+  for (const b of document.querySelectorAll('[data-adapt]')) {
+    b.addEventListener('click', () => {
+      const example=document.getElementById(b.dataset.adapt);
+      if (!example) return;
+      const request = `I want to adapt the example prompt below to my actual class. Please help me decide what will work best, not merely reword it.
+
+I teach [course and grade]. Students need help with [specific learning goal or misconception]. I can provide [curriculum, lessons, examples, other materials]. I want students to do [the thinking they must practice] independently. Delivery will be [paper, Canvas, flashcard tool, etc.].
+
+Before generating resources:
+1. Briefly assess whether this type of practice fits the learning goal. If a different format would be more useful, explain why.
+2. Ask at most two important questions, or state reasonable assumptions if the context is sufficient.
+3. Customize the example: adjust coverage, number and complexity of items, what sources are authoritative, answer and feedback requirements, student/teacher separation, output format, and verification. Remove instructions that do not help my particular task.
+4. Give me ONE complete, copy-ready prompt, plus a brief list of the materials I should upload. Do not produce the actual resource yet.
+
+EXAMPLE PROMPT TO ADAPT:
+${example.value}`;
+      copyText(request, example);
+    });
+  }
+  const build=document.getElementById('build-request');
+  build?.addEventListener('click',()=>{
+    const get=id=>document.getElementById(id).value.trim();
+    const course=get('course')||'[course and grade]';
+    const kind=get('rtype')||'[type of resource]';
+    const goal=get('goal')||'[learning target or misconception]';
+    const sources=get('materials')||'[list the lessons, readings, standards, or examples you can provide]';
+    const thinking=get('thinking')||'[the reasoning students must do independently]';
+    document.getElementById('starter-text').value='I teach '+course+'. I would like '+kind.toLowerCase()+' to help students learn '+goal+'.\n\nAvailable materials: '+sources+'.\nThe thinking students should still do themselves: '+thinking+'.\n\nBefore producing the resource, please write a complete prompt I can use. Specify source priorities, student level, appropriate scope, the exact format, answer and explanation expectations, and how I should verify accuracy and student usability.\n\nAsk at most two essential questions if necessary; otherwise state sensible assumptions. Give me the finished prompt first, not the teaching resource. Do not claim to have read or tested files unless you actually have.';
+    document.getElementById('starter-output').hidden=false;
+    notify('Request prepared. You can edit or copy it.');
+  });
+  document.getElementById('copy-starter')?.addEventListener('click',()=>{const t=document.getElementById('starter-text');copyText(t.value,t);});
+})();
+</script></body></html>
